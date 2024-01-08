@@ -2,9 +2,9 @@
 COMING SOON
 
 ## Install & setup
-To use Ansible, a couple of tools are required:
+To use this repo, a couple of tools are required:
 
-* git (to clone this repo)
+* git (to clone the repo)
 * pipx (to install ansible)
 * ansible (to configure the system)
 
@@ -23,7 +23,7 @@ git clone https://github.com/fjfinch/arkime-ansible.git
 ansible-galaxy collection install -r requirements.yml
 ```
 
-4 - Change the variables in `main.yml` & execute the playbook:
+4 - In `ansible/`, change the variables in `main.yml` & execute the playbook:
 ```bash
 ansible-playbook main.yml -K
 ```
