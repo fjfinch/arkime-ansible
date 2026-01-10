@@ -1,5 +1,5 @@
 # arkime-ansible
-REPO DESCRIPTION
+Ansible playbook for deploying and configuring an Arkime container.
 
 ## Install & setup
 To use this repo, a couple of tools are required:
