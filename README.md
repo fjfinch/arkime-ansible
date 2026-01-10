@@ -1,4 +1,4 @@
-# REPO NAME
+# arkime-ansible
 REPO DESCRIPTION
 
 ## Install & setup
@@ -15,7 +15,7 @@ sudo apt update && sudo apt install -y git pipx && pipx install ansible --includ
 
 2 - Clone this repository:
 ```bash
-git clone https://github.com/fjfinch/<REPO>.git
+git clone https://github.com/fjfinch/arkime-ansible.git
 ```
 
 3 - Pull the required roles:

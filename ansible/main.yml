@@ -4,8 +4,8 @@
   gather_facts: false
   become_method: sudo
 
-  vars:
-    <VARS>
+#  vars:
+#    <VARS>
 
   pre_tasks:
     - name: 'Connect to host & retrieve facts'
@@ -14,8 +14,8 @@
           - '!all'
           - 'network'
 
-  roles:
-    - role: GITHUB.UPDATE.ROLE
+#  roles:
+#    - role: GITHUB.UPDATE.ROLE
 
   tasks:
-    - import_tasks: tasks/<TASKS>
+    - import_tasks: tasks/docker.yml

@@ -1,0 +1,42 @@
+---
+name: arkime
+
+services:
+  arkime-capture:
+    container_name: arkime-capture
+    image: ghcr.io/arkime/arkime/arkime:v5-latest
+    network_mode: host
+    restart: unless-stopped
+    user: root
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - NET_BIND_SERVICE
+      - SETPCAP
+    ulimits:
+      memlock:
+        soft: -1 # Set memlock to unlimited (no soft or hard limit)
+        hard: -1
+    environment:
+      TZ: "${DEVICE_TIMEZONE}"
+      ARKIME__elasticsearch: "http://localhost:9200"
+    volumes:
+      - /opt/arkime/raw:/opt/arkime/raw
+      - /opt/arkime/etc:/opt/arkime/etc
+    command: /opt/arkime/bin/docker.sh capture --update-geo --host=Intel-NUC11TNHv50L
+  arkime-viewer:
+    container_name: arkime-viewer
+    image: ghcr.io/arkime/arkime/arkime:v5-latest
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      TZ: "${DEVICE_TIMEZONE}"
+      ARKIME__elasticsearch: "http://localhost:9200"
+    volumes:
+      - /opt/arkime/raw:/opt/arkime/raw
+      - /opt/arkime/etc:/opt/arkime/etc
+    command: /opt/arkime/bin/docker.sh viewer
+
+volumes:
+  volume_arkime:
+    external: true

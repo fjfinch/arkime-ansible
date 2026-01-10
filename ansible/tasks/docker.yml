@@ -1,0 +1,49 @@
+---
+- name: 'DOCKER : copy docker env file'
+  ansible.builtin.template:
+    src: templates/.env.j2
+    dest: files/.env
+    mode: '0644'
+
+- name: 'DOCKER : create volume'
+  community.docker.docker_volume:
+    name: '{{ item.name }}'
+  loop:
+    - { name: volume_opensearch_data }
+    - { name: volume_arkime }
+  become: true
+
+- name: 'DOCKER : create db container'
+  community.docker.docker_compose_v2:
+    project_src: files/
+    files: docker-compose-opensearch.yml
+    pull: always
+#    recreate: always
+  become: true
+
+- name: 'DOCKER : check if service is running'
+  ansible.builtin.uri:
+    url: http://localhost:9200/_cluster/health
+    return_content: true
+    status_code: 200
+  register: output
+  until: output.json.status is defined and output.json.status == "green"
+  retries: 20
+  delay: 2
+
+- name: 'DOCKER : init db'
+  ansible.builtin.command: "docker run --rm --network=host ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/db/db.pl --insecure http://localhost:9200 init --ifneeded"
+  become: true
+
+- name: 'DOCKER : create containers'
+  community.docker.docker_compose_v2:
+    project_src: files/
+    files: docker-compose-arkime.yml
+    pull: always
+#    recreate: always
+  become: true
+
+- name: 'DOCKER : remove unused images'
+  community.docker.docker_prune:
+    images: true
+  become: true
