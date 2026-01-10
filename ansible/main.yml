@@ -4,9 +4,6 @@
   gather_facts: false
   become_method: sudo
 
-#  vars:
-#    <VARS>
-
   pre_tasks:
     - name: 'Connect to host & retrieve facts'
       ansible.builtin.setup:
@@ -14,8 +11,8 @@
           - '!all'
           - 'network'
 
-#  roles:
-#    - role: GITHUB.UPDATE.ROLE
+  roles:
+    - role: GITHUB.UPDATE.ROLE
 
   tasks:
     - import_tasks: tasks/docker.yml
