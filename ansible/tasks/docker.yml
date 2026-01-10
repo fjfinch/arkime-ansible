@@ -28,8 +28,8 @@
     status_code: 200
   register: output
   until: output.json.status is defined and output.json.status == "green"
-  retries: 20
-  delay: 2
+  retries: 5
+  delay: 5
 
 - name: 'DOCKER : init db'
   ansible.builtin.command: "docker run --rm --network=host ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/db/db.pl --insecure http://localhost:9200 init --ifneeded"
