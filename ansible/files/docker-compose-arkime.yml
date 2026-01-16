@@ -2,8 +2,8 @@
 name: arkime
 
 services:
-  arkime-capture:
-    container_name: arkime-capture
+  arkime:
+    container_name: arkime
     image: ghcr.io/arkime/arkime/arkime:v5-latest
     network_mode: host
     restart: unless-stopped
@@ -18,18 +18,7 @@ services:
     volumes:
       - volume_arkime:/opt/arkime/raw
       - ./arkime/:/opt/arkime/etc
-    command: /opt/arkime/bin/docker.sh capture --update-geo # --host=Intel-NUC11TNHv50L
-  arkime-viewer:
-    container_name: arkime-viewer
-    image: ghcr.io/arkime/arkime/arkime:v5-latest
-    network_mode: host
-    restart: unless-stopped
-    environment:
-      TZ: "${DEVICE_TIMEZONE}"
-    volumes:
-      - volume_arkime:/opt/arkime/raw
-      - ./arkime/:/opt/arkime/etc
-    command: /opt/arkime/bin/docker.sh viewer
+    command: /opt/arkime/bin/docker.sh capture-viewer --update-geo # --host=Intel-NUC11TNHv50L
 
 volumes:
   volume_arkime:
