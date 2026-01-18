@@ -2,8 +2,8 @@
 name: opensearch
 
 services:
-  opensearch-node:
-    container_name: opensearch-node
+  opensearch:
+    container_name: opensearch
     image: opensearchproject/opensearch:latest
     network_mode: host
     restart: unless-stopped
@@ -17,15 +17,15 @@ services:
     environment:
       - "TZ=${DEVICE_TIMEZONE}"
       - cluster.name=opensearch-cluster # Name the cluster
-      - node.name=opensearch-node # Name the node that will run in this container
+      - node.name=opensearch # Name the node that will run in this container
       - discovery.type=single-node
       - bootstrap.memory_lock=true # Disable JVM heap memory swapping
       - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" # Set min and max JVM heap sizes to at least 50% of system RAM
       - "DISABLE_INSTALL_DEMO_CONFIG=true" # Prevents execution of bundled demo script which installs demo certificates and security configurations to OpenSearch
       - "DISABLE_SECURITY_PLUGIN=true" # Disables Security plugin
     volumes:
-      - volume_opensearch_node:/usr/share/opensearch/data # Creates volume called opensearch-data1 and mounts it to the container
+      - volume_opensearch:/usr/share/opensearch/data
 
 volumes:
-  volume_opensearch_node:
+  volume_opensearch:
     external: true
