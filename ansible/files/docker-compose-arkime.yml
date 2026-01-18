@@ -17,8 +17,8 @@ services:
       TZ: "${DEVICE_TIMEZONE}"
     volumes:
       - volume_arkime:/opt/arkime/raw
-      - ./arkime/:/opt/arkime/etc
-    command: /opt/arkime/bin/docker.sh capture-viewer --update-geo # --host=Intel-NUC11TNHv50L
+      - ./arkime/config.ini:/opt/arkime/etc/config.ini
+    command: /opt/arkime/bin/docker.sh capture-viewer --update-geo
 
 volumes:
   volume_arkime:
