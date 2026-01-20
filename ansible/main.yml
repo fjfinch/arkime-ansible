@@ -18,3 +18,4 @@
 
   tasks:
     - import_tasks: tasks/docker.yml
+    - import_tasks: tasks/maxmind.yml

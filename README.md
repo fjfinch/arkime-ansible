@@ -24,7 +24,7 @@ ansible-galaxy collection install -r requirements.yml
 ```
 
 4 - Execute the playbook:
-> Note: notes
+> Note: if you want geolocation - create a MaxMind license key and place it in `/etc/GeoIP.conf`
 ```bash
 ansible-playbook main.yml -K
 ```

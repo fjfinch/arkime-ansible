@@ -18,6 +18,7 @@ services:
     volumes:
       - volume_arkime:/opt/arkime/raw
       - ./arkime/config.ini:/opt/arkime/etc/config.ini
+      - /var/lib/GeoIP/:/opt/arkime/etc/geo/
     command: /opt/arkime/bin/docker.sh capture-viewer --update-geo
 
 volumes:
