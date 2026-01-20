@@ -1,18 +1,13 @@
 ---
-#- name: 'GEOIPUPDATE : install tool'
-#  ansible.builtin.apt:
-#    name: geoipupdate
-#    update_cache: true
-#  become: true
+- name: 'GEOIPUPDATE : install tool'
+  ansible.builtin.apt:
+    name: geoipupdate
+    update_cache: true
+  become: true
 
-#- name: 'GEOIPUPDATE : create file'
-#  ansible.builtin.command:
-#    cmd: geoipupdate -v
-#  register: ok
-#  changed_when: '"Database does not exist" in ok.stderr'
-#  become: true
-
-- name: 'test'
-  apt_repository:
-    codename: "{{ ansible_distribution_release }}"
-    repo: ppa:maxmind/ppa
+- name: 'GEOIPUPDATE : create file'
+  ansible.builtin.command:
+    cmd: geoipupdate -v
+  register: ok
+  changed_when: '"Database does not exist" in ok.stderr'
+  become: true
