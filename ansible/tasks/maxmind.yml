@@ -11,3 +11,11 @@
   register: ok
   changed_when: '"Database does not exist" in ok.stderr'
   become: true
+
+- name: 'GEOIPUPDATE : add cron job'
+  ansible.builtin.cron:
+    name: "update maxmind files"
+    hour: "4"
+    minute: "0"
+    job: "geoipupdate -v"
+  become: true
