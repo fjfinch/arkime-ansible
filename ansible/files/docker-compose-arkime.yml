@@ -9,6 +9,9 @@ services:
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
+      - NET_RAW
+      - SYS_NICE
+      - SYS_RESOURCE
     ulimits:
       memlock:
         soft: -1
