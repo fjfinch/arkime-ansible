@@ -1,6 +1,8 @@
 # arkime-ansible
 Ansible playbook for deploying and configuring an Arkime container.
 
+Arkime is a large scale, full packet capturing, indexing, and database system.
+
 ## Install & setup
 To use this repo, a couple of tools are required:
 
@@ -24,7 +26,7 @@ ansible-galaxy collection install -r requirements.yml
 ```
 
 4 - Execute the playbook:
-> Note: if you want geolocation - create a MaxMind license key and place it in `/etc/GeoIP.conf`
+> Note: for geolocation, create a MaxMind license key and place it in `/etc/GeoIP.conf`
 ```bash
 ansible-playbook main.yml -K
 ```
