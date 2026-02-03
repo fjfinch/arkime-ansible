@@ -1,7 +1,5 @@
 # arkime-ansible
-Ansible playbook for deploying and configuring an Arkime container.
-
-Arkime is a large scale, full packet capturing, indexing, and database system.
+Ansible playbook for deploying and configuring an Arkime container. Arkime is a large scale, full packet capturing, indexing, and database system.
 
 ## Install & setup
 To use this repo, a couple of tools are required:
