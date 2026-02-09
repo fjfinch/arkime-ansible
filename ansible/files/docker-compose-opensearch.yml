@@ -14,15 +14,8 @@ services:
       nofile:
         soft: 65536 # Maximum number of open files for the opensearch user - set to at least 65536
         hard: 65536
-    environment:
-      - "TZ=${DEVICE_TIMEZONE}"
-      - cluster.name=opensearch-cluster # Name the cluster
-      - node.name=opensearch # Name the node that will run in this container
-      - discovery.type=single-node
-      - bootstrap.memory_lock=true # Disable JVM heap memory swapping
-      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" # Set min and max JVM heap sizes to at least 50% of system RAM
-      - "DISABLE_INSTALL_DEMO_CONFIG=true" # Prevents execution of bundled demo script which installs demo certificates and security configurations to OpenSearch
-      - "DISABLE_SECURITY_PLUGIN=true" # Disables Security plugin
+    env_file:
+      - env/opensearch.env
     volumes:
       - volume_opensearch:/usr/share/opensearch/data
 

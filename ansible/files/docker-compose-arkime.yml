@@ -16,8 +16,8 @@ services:
       memlock:
         soft: -1
         hard: -1
-    environment:
-      TZ: "${DEVICE_TIMEZONE}"
+    env_file:
+      - env/arkime.env
     volumes:
       - volume_arkime:/opt/arkime/raw
       - ./arkime/config.ini:/opt/arkime/etc/config.ini
