@@ -34,7 +34,7 @@
   delay: 5
 
 - name: 'DOCKER : init db'
-  ansible.builtin.command: "docker run --rm --network=host ghcr.io/arkime/arkime/arkime:v5-latest /opt/arkime/db/db.pl --insecure http://localhost:9200 init --ifneeded"
+  ansible.builtin.command: "docker run --rm --network=host ghcr.io/arkime/arkime/arkime:v6-latest /opt/arkime/db/db.pl --insecure http://localhost:9200 init --ifneeded"
   register: result
   changed_when: '"This is a fresh Arkime install" in result.stdout_lines'
   become: true
