@@ -17,7 +17,7 @@ services:
         soft: -1
         hard: -1
     env_file:
-      - env/arkime.env
+      - config_arkime.env
     volumes:
       - volume_arkime:/opt/arkime/raw
       - ./arkime/config.ini:/opt/arkime/etc/config.ini

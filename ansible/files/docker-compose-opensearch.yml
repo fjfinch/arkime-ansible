@@ -15,7 +15,7 @@ services:
         soft: 65536 # Maximum number of open files for the opensearch user - set to at least 65536
         hard: 65536
     env_file:
-      - env/opensearch.env
+      - config_opensearch.env
     volumes:
       - volume_opensearch:/usr/share/opensearch/data
 
